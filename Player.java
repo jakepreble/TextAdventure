@@ -1,46 +1,57 @@
 import java.util.*;
 
-public class Player {
+public class Player
+{
   String name;
   int health;
   double gold;
   int monstersDefeated;
 
-  public Player(String playerName, int startingHealth, double startingGold) {
+  public Player(String playerName, int startingHealth, double startingGold)
+  {
     name = playerName;
     health = startingHealth;
     gold = startingGold;
+
   }
 
-  public String getName() {
+  public String getName()
+  {
     return name;
   }
 
-  public void changeName(String newName) {
+  public void changeName(String newName)
+  {
     name = newName;
   }
 
-  public int getHealth() {
+  public int getHealth()
+  {
     return health;
   }
 
-  public void setHealth(int newHealth) {
+  public void setHealth(int newHealth)
+  {
     health = newHealth;
   }
 
-  public double getGold() {
+  public double getGold()
+  {
     return gold;
   }
 
-  public void setGold(double newAmount) {
+  public void setGold(double newAmount)
+  {
     gold = newAmount;
   }
 
-  public int getMonstersDefeated() {
+  public int getMonstersDefeated()
+  {
     return monstersDefeated;
   }
 
-  public void defeatMonster() {
+  public void defeatMonster()
+  {
     monstersDefeated++;
   }
 }
