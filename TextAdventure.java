@@ -66,9 +66,9 @@ public class TextAdventure {
   }
 
   private void enterZone2() throws InterruptedException {
-    
+
     console.setImage("forest.jpg");
-    
+
     System.out.println(
         "\n You walk a ways into the dark, misty forest.\nYou hear leaves rustling to your right.\n What would you like to do? \ninvestigate: go towards the noise\ncontinue: ignore the sounds and keep trekking.\n\n"
             + ourHero.getName() + ": ");
@@ -93,7 +93,7 @@ public class TextAdventure {
     // ADD CODE HERE
     System.out.println("You decide that it is best to fall back asleep and hope that it was all just a dream.");
     TimeUnit.SECONDS.sleep(8);
-    enterZone10();
+    gameEnd();
     // Take action or go to another zone based on their choice
     // ADD CODE HERE
 
@@ -112,21 +112,21 @@ public class TextAdventure {
     String input = inScanner.nextLine();
 
     if (input.equals("attack")) {
-      System.out.println("\nYou idiot it's a ghost! Your attack goes straight through the ghost and you fall over.\nThe ghost hovers right over you and you close your eyes.\n");
+      System.out.println(
+          "\nYou idiot it's a ghost! Your attack goes straight through the ghost and you fall over.\nThe ghost hovers right over you and you close your eyes.\n");
       TimeUnit.SECONDS.sleep(5);
       System.out.println("You blackout.\n");
       console.setImage("black.jpg");
       ourHero.setHealth(41);
       TimeUnit.SECONDS.sleep(4);
       console.setImage("cemtarygate2.jpg");
-      System.out.println("You wake up right outside the cemetery.\n Your health is " + ourHero.getHealth() + ".\nHow did we get here?"
-      );
+      System.out.println("You wake up right outside the cemetery.\n Your health is " + ourHero.getHealth()
+          + ".\nHow did we get here?");
       TimeUnit.SECONDS.sleep(4);
       enterZone8();
     }
 
-
-    //Run from ghost; find zombie
+    // Run from ghost; find zombie
 
     else if (input.equals("run")) {
       System.out.println("\nYou run to the west side of the graveyard, hoping to escape the ghost.");
@@ -137,22 +137,23 @@ public class TextAdventure {
               + ourHero.getName() + ": ");
       input = inScanner.nextLine();
 
-      //Attack zombie in legs
+      // Attack zombie in legs
 
       if (input.equals("legs")) {
         System.out.println(
             "\nYou sweep the legs and run past the zombie, however it grabs your ankle and takes you down with it!\nYou break your ankle and cannot get back up.\nThe zombie starts eating your leg and you close your eyes.\n");
-            TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(5);
         System.out.println("You blackout.\n");
         console.setImage("black.jpg");
-        ourHero.setHealth(39);
+        ourHero.setHealth(54);
         TimeUnit.SECONDS.sleep(4);
         console.setImage("cemtarygate2.jpg");
-        System.out.println("You wake up right outside the cemetery.\n Your health is " + ourHero.getHealth() + ".\nHow did we get here?");
+        System.out.println("You wake up right outside the cemetery.\n Your health is " + ourHero.getHealth()
+            + ".\nHow did we get here?");
         enterZone8();
       }
 
-      //Attack zombie in face 
+      // Attack zombie in face
 
       if (input.equals("face")) {
         System.out.println(
@@ -160,69 +161,81 @@ public class TextAdventure {
         TimeUnit.SECONDS.sleep(4);
         console.setImage("cemtarygate2.jpg");
         ourHero.defeatMonster();
-        ourHero.setHealth(85);
+        ourHero.setHealth(83);
         System.out.println(
             "You defeated your first monster!\nLet's hope there aren't any more.\nYour health slightly dimished during the fight and currently remains at "
                 + ourHero.getHealth() + ".\n");
-                enterZone8();
+        enterZone8();
       }
     }
   }
 
   private void enterZone5() throws InterruptedException {
-    
+
     console.setImage("cabin.jpg");
 
-    System.out.println("You come across an old, haunted cabin just oustide the cemetery.\nWould you like to:\ncemetery: go back to the cemetery\ncabin: investigate the cabin\n\n" + ourHero.getName() + ": ");
+    System.out.println(
+        "\nYou come across an old, haunted cabin just oustide the cemetery.\nWould you like to:\ncemetery: go back to the cemetery\ncabin: investigate the cabin\n\n"
+            + ourHero.getName() + ": ");
     String input = inScanner.nextLine();
-    if (input.equals("cemetery")){
+    if (input.equals("cemetery")) {
       enterZone1();
-    }
-    else {
-      System.out.println("\nYou enter the cabin.\nYou see something shiny in the edge of your eye.\nIt's gold!\nYou bend down to pick it up and you trip.");
+    } else {
+      System.out.println(
+          "\nYou enter the cabin.\nYou see something shiny in the edge of your eye.\nIt's a chest! \nYou bend down to see what's inside.");
+      int chestCoins = (int) ((Math.random() * 10) + 1);
+      ourHero.setGold(chestCoins);
+      System.out.print("You found " + chestCoins + " coins!");
       TimeUnit.SECONDS.sleep(4);
-      System.out.println("It's a monster!\n There is nothing you can do except accept your fate.\nYou close your eyes.");
+      System.out.println(
+          "\nYou trip on your foot.\n It's a monster!\n There is nothing you can do except accept your fate.\nYou close your eyes.");
       console.setImage("insidecabin.jpg");
       TimeUnit.SECONDS.sleep(4);
       System.out.println("You blackout.\n");
       console.setImage("black.jpg");
-      ourHero.setHealth(14);
+      ourHero.setHealth(3);
       TimeUnit.SECONDS.sleep(4);
-      System.out.println("You wake up outside the cemetery you previously ignored.\n Your health is " + ourHero.getHealth() + ".\n How did we get here?");
+      System.out.println("You wake up outside the cemetery you previously ignored.\n Your health is "
+          + ourHero.getHealth() + ".\n How did we get here?");
       enterZone8();
 
     }
-    
 
   }
 
   private void enterZone6() throws InterruptedException {
     console.setImage("forestmonster.jpg");
-    System.out.println("A forest monster lurks behind a tree!\n It looks hungry for blood.\nYou see a sword on the ground.\nWhat do you do?\nattack: grab the sword and attack the monster\nrun: keep running through the forest\n\n" + ourHero.getName() + ": ");
-    
+    System.out.println(
+        "\nA forest monster lurks behind a tree!\n It looks hungry for blood.\nYou see a sword on the ground.\nWhat do you do?\nattack: grab the sword and attack the monster\nrun: keep running through the forest\n\n"
+            + ourHero.getName() + ": ");
+
     String input = inScanner.nextLine();
-    if (input.equals("attack")){
-      System.out.println("\nYou grab the sword and run towards the monster.\nWhere do you attack?\nlegs: slice the legs\nface: jump up and slash the monster's face\n\n" + ourHero.getName() + ": ");
+    if (input.equals("attack")) {
+      System.out.println(
+          "\nYou grab the sword and run towards the monster.\nWhere do you attack?\nlegs: slice the legs\nface: jump up and slash the monster's face\n\n"
+              + ourHero.getName() + ": ");
       input = inScanner.nextLine();
 
-      if (input.equals("legs")){
+      if (input.equals("legs")) {
         ourHero.setHealth(64);
-        System.out.println("You slice the monster's front legs straight through.\n It lets out a cry, and falls over on you.\n You defeated the monster, but you hurt your back doing so.\n Your health stands at " + ourHero.getHealth() + ".\n");
+        System.out.println(
+            "You slice the monster's front legs straight through.\n It lets out a cry, and falls over on you.\n You defeated the monster, but you hurt your back doing so.\n Your health stands at "
+                + ourHero.getHealth() + ".\n");
         ourHero.defeatMonster();
         System.out.println("You continue walking through the forest\n");
         enterZone7();
-      }
-      else if (input.equals("face")){
-        System.out.println("Sword in hand, you jump to try and slash the monster's face.\n However, the monster jumps on you first!\nYou fall back on the forest ground and everything starts spinning.\n");
+      } else if (input.equals("face")) {
+        System.out.println(
+            "Sword in hand, you jump to try and slash the monster's face.\n However, the monster jumps on you first!\nYou fall back on the forest ground and everything starts spinning.\n");
         ourHero.setHealth(17);
         TimeUnit.SECONDS.sleep(5);
         console.setImage("black.jpg");
         System.out.println("You blackout.");
         enterZone7();
-        System.out.println("You wake up somewhere new. Your health is at " + ourHero.getHealth() + ".\n How did we get here?");
+        System.out.println(
+            "You wake up somewhere new. Your health is at " + ourHero.getHealth() + ".\n How did we get here?");
       }
-    }
-    else if (input.equals("run")){
+    } else if (input.equals("run")) {
       enterZone7();
     }
 
@@ -231,7 +244,8 @@ public class TextAdventure {
   private void enterZone7() throws InterruptedException {
 
     console.setImage("river.jpg");
-    System.out.println("You come across a misty river with a boat near the edge. \nWhere will the boat take you? \nYou decide to find out. \n");
+    System.out.println(
+        "\nYou come across a misty river with a boat near the edge. \nWhere will the boat take you? \nYou decide to find out. \n");
     TimeUnit.SECONDS.sleep(5);
     enterZone9();
 
@@ -239,42 +253,105 @@ public class TextAdventure {
 
   private void enterZone8() throws InterruptedException {
     console.setImage("river.jpg");
-    System.out.println("Outside the cemetary, you wonder how all of this happened.\nYou decide that the distant city must have answer.\nIn front of you, a river with a boat on the bank, looks to head downstream.\nYou decide to hop on the boat towards the city.\n");
+    System.out.println(
+        "\nOutside the cemetary, you wonder how all of this happened.\nYou decide that the distant city must have answer.\nIn front of you, a river with a boat on the bank, looks to head downstream.\nYou decide to hop on the boat towards the city.\n");
+    TimeUnit.SECONDS.sleep(10);
     enterZone9();
   }
 
   private void enterZone9() throws InterruptedException {
     console.setImage("rivermonsters.jpg");
-    System.out.println("The river becomes swarmed with monsters!\n The boat has a different weapons.\nWhich one do you choose?\nbow: a bow and arrow that can damage monsters from afar\nmace: a heavy weapon with spikes that can destroy monsters with a single swing\n\n" + ourHero.getName() + ": ");
+    System.out.println(
+        "The river becomes swarmed with monsters!\n The boat has 2 different weapons.\nWhich one do you choose?\nbow: a bow and arrow that can damage monsters from afar\nmace: a heavy weapon with spikes that can destroy monsters with a single swing\n\n"
+            + ourHero.getName() + ": ");
     String input = inScanner.nextLine();
-    if (input.equals("bow")){
-      System.out.println("You pick up the bow and start shooting all the monsters.\nYou take out a few of them, but there are too many for just you to take on with a simple bow.\nThey swarm the boat.\n");
-      TimeUnit.SECONDS.sleep(8);
-      System.out.println("You blackout.");
-      console.setImage("black.jpg");
-      enterZone10();
-      
+    if (input.equals("bow")) {
+      if (ourHero.getHealth() >= 70) {
+        System.out.println(
+            "\nYou pick up the bow and start shooting all the monsters.\n You manage to kill all 6 of them due to your high health.\nHowever, after the fight, you are exhausted and lie down to take a rest.");
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(10);
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      } else if (ourHero.getHealth() >= 40 && ourHero.getHealth() <= 70) {
+        System.out.println(
+            "\nYou pick up the bow and start shooting the monsters.\nYou take out a few of them, but there are too many for just you to take on with a simple bow.\nThey swarm the boat.\n");
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(8);
+        System.out.println("You blackout.");
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      } else {
+        System.out.println(
+            "\nYou pick up the bow and shoot a few arrows, but you only manage to take out 1 monster before being swarmed.\nYour low health causes you to be easily swarmed.\n");
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(7);
+        System.out.println("You blackout.");
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      }
+
     }
-    if (input.equals("mace")){
-      System.out.println("You grab the mace and start swinging at the monsters.\n There are far too many for just you to take on with a mace.\nThey swarm the boat.\n");
-      TimeUnit.SECONDS.sleep(7);
-      System.out.println("You blackout.");
-      console.setImage("black.jpg");
-      enterZone10();
+    if (input.equals("mace")) {
+      if (ourHero.getHealth() >= 80) {
+        System.out.println(
+            "\nYou pick up the mace and start swinging at all the monsters.\n You manage to kill all 6 of them due to your high health.\nHowever, after the fight, you are exhausted and lie down to take a rest.");
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(10);
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      } else if (ourHero.getHealth() >= 50 && ourHero.getHealth() <= 80) {
+        System.out.println(
+            "\nYou pick up the mace and start swinging at the monsters.\nYou take out a few of them, but there are too many for just you to take on with a simple mace.\nThey swarm the boat.\n");
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(8);
+        System.out.println("You blackout.");
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      } else {
+        System.out.println(
+            "\nYou pick up the mace and get a few swings in, but you only manage to take out 1 monster before being swarmed.\nYour low health causes you to be easily swarmed.\n");
+        ourHero.defeatMonster();
+        TimeUnit.SECONDS.sleep(7);
+        System.out.println("You blackout.");
+        console.setImage("black.jpg");
+        TimeUnit.SECONDS.sleep(2);
+        gameEnd();
+      }
     }
-    
-    
+
   }
 
-  private void enterZone10() {
+  private void gameEnd() throws InterruptedException {
     console.setImage("abandoned.jpg");
     System.out.println(
-        "You wake up in the city that you saw in the distance just a few hours ago. \nOr was it a few days ago? \nYour memory is blurry.\nAll of your cuts and bruises are healed.\nYou look around.\nThe city is abandoned. Not a soul in sight.\nWhere to go next?\n\n THE END.");
-  }
+        "\nYou wake up in the city that you saw in the distance just a few hours ago. \nOr was it a few days ago? \nYour memory is blurry.\nAll of your cuts and bruises are healed.\nYou look around.\nThe city is abandoned. Not a soul in sight.\n");
+    TimeUnit.SECONDS.sleep(5);
+    System.out.println("STATS: ");
+    if (ourHero.getGold() != 0.0) {
+      System.out.println(ourHero.getGold() + " gold.");
+    }
+    System.out.println(ourHero.monstersDefeated + " monsters defeated.");
+    System.out.println(ourHero.getHealth() + " health before the final attack.");
 
-  private void gameEnd() {
-    // ADD CODE HERE
-
-    inScanner.close();
   }
 }
